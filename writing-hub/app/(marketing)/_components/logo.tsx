@@ -12,12 +12,11 @@ const font = Poppins({
 
 export const Logo = () => {
     return (
-        <div className="hidden md:flex items-center items-center gap-z-2">
+        <div>
             <Image
                 src="/logo-light.svg"
-                height="40"
-                width="40"
                 alt="Logo"
+                fill
             />
         </div>
     )
