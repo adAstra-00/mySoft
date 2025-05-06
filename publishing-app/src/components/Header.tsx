@@ -1,20 +1,35 @@
 // filepath: c:\Users\PC\Documents\Coding Projects\writingHub\publishing-app\src\components\Header.tsx
-import ReactLogo from '../assets/react.webp'; // Use optimized WebP image
+import ReactLogo from '../assets/react.webp';
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  toggleLeft: () => void;
+  toggleRight: () => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ toggleLeft, toggleRight }) => {
   return (
-    <header>
-      <img
-        src={ReactLogo}
-        alt="React Logo"
-        loading="lazy" // Lazy load the image
-        style={{ width: '100px', height: '100px' }}
-      />
+    <header className="h-14 bg-white border-b flex-grow items-center justify-between">
+      <div className="flex flex-row justify-between gap-2">
+        <button onClick={toggleLeft} className="flex-none text-gray-600 hover:text-black text-xl">
+          ☰
+        </button>
+        <img
+          src={ReactLogo}
+          alt="React Logo"
+          loading="lazy"
+          className="h-10 w-auto flex-none"
+        />
+        <h1 className="flex text-xl flex-row font-bold ml-2">WriterHub</h1>
+        <button onClick={toggleRight} className="flex-none text-gray-600 hover:text-black text-xl">
+        ℹ️
+        </button>
+      </div>
     </header>
   );
 };
 
 export default Header;
+
 
 /* Compress Images:
 - Open your image files (e.g., react.svg) in Squoosh.
