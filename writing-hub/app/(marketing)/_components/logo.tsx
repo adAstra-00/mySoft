@@ -18,6 +18,14 @@ export const Logo = () => {
                 alt="Logo"
                 width={20} // Set the width of the image
                 height={20} // Set the height of the image
+                className="dark:hidden"
+            />
+            <Image
+                src="/logo-dark.svg"
+                alt="Logo"
+                width={20} // Set the width of the image
+                height={20} // Set the height of the image
+                className="hidden dark:block"
             />
             <p className='ml-2 hidden sm:block {cn("font-semibold", font.className)}'>
                 Writing Hub
