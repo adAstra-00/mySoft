@@ -1,10 +1,19 @@
+import { Button } from "@/components/ui/button"
 import { Logo } from "./logo"
 
 export const Footer = () => {
     return(
-        <div className="flex items-center justify-center h-5">
-            <div id="logo" className="relative w-32 h-full">
+        <div className="w-full h-full flex flex-row items-center justify-between">
+            <Button id="logo-full" variant="ghost" className="flex">
                 <Logo />
+            </Button>
+            <div id="page-links">
+                <Button variant="ghost" size="sm">
+                    Privacy Policy
+                </Button>
+                <Button variant="ghost" size="sm">
+                    Terms & Conditions
+                </Button>
             </div>
         </div>
     )
