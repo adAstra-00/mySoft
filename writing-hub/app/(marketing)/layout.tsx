@@ -8,7 +8,8 @@ const MarketingLayout = ({
     return ( 
         <div className="min-h-screen flex flex-col dark:bg-[#1F1F1F]">
             <Navbar />
-            <main className="flex-grow pt-20">
+            <main className="flex flex-col flex-grow">
+
                 {children}
             </main>
         </div>

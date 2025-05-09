@@ -7,7 +7,8 @@ import { StatusBar } from "./_components/statusbar";
 
 const MarketingPage = () => {
     return (
-        <div id="full-area" className="flex flex-col">
+        <div id="full-area" className="flex flex-col h-screen">
+
 
             <div id="top-row" className="flex flex-col w-full z-50">
                 {/*
@@ -20,7 +21,7 @@ const MarketingPage = () => {
                 */}
             </div>
 
-            <div id="mid-row" className="flex flex-col items-center justify-center w-full overflow-y-auto z-45">
+            <div id="mid-row" className="flex flex-col flex-grow items-center justify-center w-full overflow-y-auto z-45">
                 <div id="heading" className="text-center p-2 z-40">
                     <Heading />
                 </div>
@@ -39,7 +40,6 @@ const MarketingPage = () => {
                     <Footer />
                 </div>
             </div>
-
         </div>
     );
 }
