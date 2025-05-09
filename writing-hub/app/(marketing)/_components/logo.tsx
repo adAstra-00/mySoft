@@ -12,13 +12,24 @@ const font = Poppins({
 
 export const Logo = () => {
     return (
-        <div className="hidden md:flex items-center items-center gap-z-2">
+        <div id="logo" className="flex flex-row">
             <Image
                 src="/logo-light.svg"
-                height="40"
-                width="40"
                 alt="Logo"
+                width={20} // Set the width of the image
+                height={20} // Set the height of the image
+                className="dark:hidden"
             />
+            <Image
+                src="/logo-dark.svg"
+                alt="Logo"
+                width={20} // Set the width of the image
+                height={20} // Set the height of the image
+                className="hidden dark:block"
+            />
+            <p className='ml-2 hidden sm:block {cn("font-semibold", font.className)}'>
+                Writing Hub
+            </p>
         </div>
     )
 }
