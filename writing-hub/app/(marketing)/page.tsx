@@ -9,6 +9,7 @@ const MarketingPage = () => {
     return (
         <div id="full-area" className="flex flex-col h-screen">
 
+
             <div id="top-row" className="flex flex-col w-full z-50">
                 {/*
                 <div id="banner" className="flex items-center justify-center w-full h-[calc(12px+1.5rem)] p-3 z-50">
