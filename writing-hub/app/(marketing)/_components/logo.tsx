@@ -1,35 +1,33 @@
 import Image from 'next/image';
-// import { Poppins } from 'next/font/google';
+import React from "react";
 
-/* uncomment if you want to use the font (👆) in the logo
-import { cn } from "@/lib/utils"; // from shadcn, to dynamically append classes to tailwind elements without fear of overwritting or incorrect merging
+interface LogoProps {
+    showText?: boolean;
+    textSize?: string;
+}
 
-const font = Poppins({
-    subsets: ['latin'],
-    weight: ['400', '600'],
-});
-*/
-
-export const Logo = () => {
+export const Logo: React.FC<LogoProps> = ({showText = true, textSize} ) => {
     return (
-        <div id="logo" className="flex flex-row">
+        <div id="logo" className="flex flex-row items-center">
             <Image
                 src="/logo-light.svg"
-                alt="Logo"
-                width={20} // Set the width of the image
-                height={20} // Set the height of the image
-                className="dark:hidden"
+                alt="Light-Mode Logo"
+                height={20}
+                width={20}
+                className="dark:hidden m-2"
             />
             <Image
                 src="/logo-dark.svg"
-                alt="Logo"
-                width={20} // Set the width of the image
-                height={20} // Set the height of the image
-                className="hidden dark:block"
+                alt="Dark-Mode Logo"
+                height={20}
+                width={20}
+                className="hidden dark:block m-2"
             />
-            <p className='ml-2 hidden sm:block {cn("font-semibold", font.className)}'>
-                Writing Hub
-            </p>
+            {showText && (
+                <p className={`hidden sm:block font-bold {cn("font-semibold", font.className)} ${textSize}`}>
+                    Writing Hub
+                </p>
+            )}
         </div>
     )
 }
