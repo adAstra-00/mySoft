@@ -1,8 +1,12 @@
 "use client";
-import { Spinner } from "@/components/spinner";
-import { Button } from "@/components/ui/button";
+
 import { useConvexAuth } from "convex/react";
 import { ArrowRight } from "lucide-react";
+import { SignInButton } from "@clerk/clerk-react";
+import Link from "next/link";
+
+import { Button } from "@/components/ui/button";
+import { Spinner } from "@/components/spinner";
 
 export const Heading = () => {
     const { isAuthenticated, isLoading } = useConvexAuth();
@@ -20,22 +24,22 @@ export const Heading = () => {
                     <Spinner size="lg" />
                 </div>
             )}
-            <div className="w-min">
-                {isAuthenticated && !isLoading ? (
-                    <Button>
+            {isAuthenticated && !isLoading && (
+                <Button asChild>
+                    <Link href="/documents">
                         Enter Jotion
                         <ArrowRight className="h-4 w-4 ml-2" />
+                    </Link>
+                </Button>
+            )}
+            {!isAuthenticated && !isLoading &&(
+                <SignInButton mode="modal">
+                    <Button>
+                        Get Jotion free
+                        <ArrowRight className="h-4 w-4 ml-2" />
                     </Button>
-                ) : (
-                    // Invisible placeholder to reserve space
-                    <div>
-                        <Button variant="outline">
-                            Log in
-                            <ArrowRight className="h-4 w-4 ml-2" />
-                        </Button>
-                    </div>
-                )}
-            </div>
+                </SignInButton>
+            )}
         </div>
-    );
-};
+    )
+}
