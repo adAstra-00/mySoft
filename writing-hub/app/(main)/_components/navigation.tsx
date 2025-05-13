@@ -1,9 +1,10 @@
-import { cn } from "@/lib/utils";
 import { ChevronsLeftIcon, MenuIcon } from "lucide-react";
-import { nav } from "motion/react-client";
 import { usePathname } from "next/navigation";
 import { ComponentRef, useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "usehooks-ts"; //manually define in JS what is cosidered "mobile", "desktop", etc, using breakpoints
+
+import { cn } from "@/lib/utils";
+import { UserItem } from "./user-item";
 
 export const Navigation = () => {
     const pathname = usePathname();
@@ -105,7 +106,7 @@ export const Navigation = () => {
                     <ChevronsLeftIcon className="h-6 w-6" />
                 </div>
                 <div>
-                    <p>Action items</p>
+                    <UserItem />
                 </div>
                 <div className="mt-4">
                     <p>Documents</p>
