@@ -1,17 +1,21 @@
-import { ChevronsLeftIcon, MenuIcon } from "lucide-react";
+import { useMutation, useQuery } from "convex/react";
+import { ChevronsLeftIcon, MenuIcon, PlusCircle, Search, Settings } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { ComponentRef, useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "usehooks-ts"; //manually define in JS what is cosidered "mobile", "desktop", etc, using breakpoints
-import {useQuery} from "convex/react";
 
-import { cn } from "@/lib/utils";
 import { api } from "@/convex/_generated/api";
+import { cn } from "@/lib/utils";
+
+import { toast } from "sonner";
+import { Item } from "./item";
 import { UserItem } from "./user-item";
 
 export const Navigation = () => {
     const pathname = usePathname();
     const isMobile = useMediaQuery("(max-width:768px)");
-    const documents=useQuery(api.documents.get);
+    const documents = useQuery(api.documents.get);
+    const create = useMutation(api.documents.create);
 
     const isResizingRef = useRef(false);
     const sidebarRef = useRef<ComponentRef<"aside">>(null);
@@ -88,6 +92,15 @@ export const Navigation = () => {
         }
     }
 
+    const handleCreate = () => {
+        const promise = create({ title: "Untitled" });
+        toast.promise(promise, {
+            loading: "Creating a new note...",
+            success: "New note created!",
+            error: "Failed to create a new note",
+        });
+    }
+
     return (
         <>
             <aside
@@ -110,12 +123,28 @@ export const Navigation = () => {
                 </div>
                 <div>
                     <UserItem />
+                    <Item
+                        label="Search"
+                        icon={Search}
+                        isSearch
+                        onClick={() => { }}
+                    />
+                    <Item
+                        label="Settings"
+                        icon={Settings}
+                        onClick={() => { }}
+                    />
+                    <Item
+                        label="New page"
+                        icon={PlusCircle}
+                        onClick={handleCreate}
+                    />
                 </div>
                 <div className="mt-4">
                     {documents?.map((document) => (
-                    <p key={document._id}>
-                        {document.title}
-                    </p>
+                        <p key={document._id}>
+                            {document.title}
+                        </p>
                     ))}
                 </div>
                 <div //appears when we over on sideline, bold line
