@@ -1,16 +1,22 @@
 import { useMutation } from "convex/react";
-import { ChevronsLeftIcon, MenuIcon, PlusCircle, Search, Settings } from "lucide-react";
+import { ChevronsLeftIcon, MenuIcon, Plus, PlusCircle, Search, Settings, Trash } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { ComponentRef, useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "usehooks-ts"; //manually define in JS what is cosidered "mobile", "desktop", etc, using breakpoints
 
-import { api } from "@/convex/_generated/api";
 import { cn } from "@/lib/utils";
+import { api } from "@/convex/_generated/api";
+import {
+    Popover,
+    PopoverTrigger,
+    PopoverContent,
+} from "@/components/ui/popover";
 
 import { toast } from "sonner";
 import { Item } from "./item";
 import { UserItem } from "./user-item";
 import { DocumentList } from "./document-list";
+import { TrashBox } from "./trash-box";
 
 export const Navigation = () => {
     const pathname = usePathname();
@@ -143,6 +149,22 @@ export const Navigation = () => {
                 </div>
                 <div className="mt-4">
                     <DocumentList />
+                    <Item
+                        onClick={handleCreate}
+                        label="Add a page"
+                        icon={Plus}
+                    />
+                    <Popover>
+                        <PopoverTrigger className="w-full mt-4">
+                            <Item label="Trash" icon={Trash} />
+                        </PopoverTrigger>
+                        <PopoverContent 
+                            className="p-0 w-72"
+                            side={isMobile ? "bottom" : "right"}
+                        >
+                            <TrashBox/>
+                        </PopoverContent>
+                    </Popover>
                 </div>
                 <div //appears when we over on sideline, bold line
                     onMouseDown={handleMouseDown}
