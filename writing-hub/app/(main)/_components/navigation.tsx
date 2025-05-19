@@ -20,7 +20,7 @@ import { DocumentList } from "./document-list";
 import { TrashBox } from "./trash-box";
 
 export const Navigation = () => {
-    const search =useSearch();
+    const search = useSearch();
     const pathname = usePathname();
     const isMobile = useMediaQuery("(max-width:768px)");
 
@@ -160,11 +160,11 @@ export const Navigation = () => {
                         <PopoverTrigger className="w-full mt-4">
                             <Item label="Trash" icon={Trash} />
                         </PopoverTrigger>
-                        <PopoverContent 
+                        <PopoverContent
                             className="p-0 w-72"
                             side={isMobile ? "bottom" : "right"}
                         >
-                            <TrashBox/>
+                            <TrashBox />
                         </PopoverContent>
                     </Popover>
                 </div>
